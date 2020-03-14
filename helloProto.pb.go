@@ -104,34 +104,121 @@ func (m *HelloReply) GetMessage() string {
 	return ""
 }
 
+// The echo request
+type EchoRequest struct {
+	Erequest             int32    `protobuf:"varint,1,opt,name=erequest,proto3" json:"erequest,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *EchoRequest) Reset()         { *m = EchoRequest{} }
+func (m *EchoRequest) String() string { return proto.CompactTextString(m) }
+func (*EchoRequest) ProtoMessage()    {}
+func (*EchoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_cd6dfd7d8c95606e, []int{2}
+}
+
+func (m *EchoRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EchoRequest.Unmarshal(m, b)
+}
+func (m *EchoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EchoRequest.Marshal(b, m, deterministic)
+}
+func (m *EchoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EchoRequest.Merge(m, src)
+}
+func (m *EchoRequest) XXX_Size() int {
+	return xxx_messageInfo_EchoRequest.Size(m)
+}
+func (m *EchoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_EchoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EchoRequest proto.InternalMessageInfo
+
+func (m *EchoRequest) GetErequest() int32 {
+	if m != nil {
+		return m.Erequest
+	}
+	return 0
+}
+
+type EchoReply struct {
+	Ereply               int32    `protobuf:"varint,1,opt,name=ereply,proto3" json:"ereply,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *EchoReply) Reset()         { *m = EchoReply{} }
+func (m *EchoReply) String() string { return proto.CompactTextString(m) }
+func (*EchoReply) ProtoMessage()    {}
+func (*EchoReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_cd6dfd7d8c95606e, []int{3}
+}
+
+func (m *EchoReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EchoReply.Unmarshal(m, b)
+}
+func (m *EchoReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EchoReply.Marshal(b, m, deterministic)
+}
+func (m *EchoReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EchoReply.Merge(m, src)
+}
+func (m *EchoReply) XXX_Size() int {
+	return xxx_messageInfo_EchoReply.Size(m)
+}
+func (m *EchoReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_EchoReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EchoReply proto.InternalMessageInfo
+
+func (m *EchoReply) GetEreply() int32 {
+	if m != nil {
+		return m.Ereply
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*HelloRequest)(nil), "gRPCtemplate.HelloRequest")
 	proto.RegisterType((*HelloReply)(nil), "gRPCtemplate.HelloReply")
+	proto.RegisterType((*EchoRequest)(nil), "gRPCtemplate.EchoRequest")
+	proto.RegisterType((*EchoReply)(nil), "gRPCtemplate.EchoReply")
 }
 
-func init() { proto.RegisterFile("helloProto.proto", fileDescriptor_cd6dfd7d8c95606e) }
+func init() {
+	proto.RegisterFile("helloProto.proto", fileDescriptor_cd6dfd7d8c95606e)
+}
 
 var fileDescriptor_cd6dfd7d8c95606e = []byte{
-	// 150 bytes of a gzipped FileDescriptorProto
+	// 215 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc8, 0x48, 0xcd, 0xc9,
 	0xc9, 0x0f, 0x28, 0xca, 0x2f, 0xc9, 0xd7, 0x2b, 0x00, 0x91, 0x42, 0x3c, 0xe9, 0x41, 0x01, 0xce,
 	0x25, 0xa9, 0xb9, 0x05, 0x39, 0x89, 0x25, 0xa9, 0x4a, 0x4a, 0x5c, 0x3c, 0x1e, 0x20, 0x15, 0x41,
 	0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x42, 0x42, 0x5c, 0x2c, 0x79, 0x89, 0xb9, 0xa9, 0x12, 0x8c,
 	0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x60, 0xb6, 0x92, 0x1a, 0x17, 0x17, 0x54, 0x4d, 0x41, 0x4e, 0xa5,
-	0x90, 0x04, 0x17, 0x7b, 0x6e, 0x6a, 0x71, 0x71, 0x62, 0x3a, 0x4c, 0x11, 0x8c, 0x6b, 0xe4, 0xcb,
-	0xc5, 0xee, 0x5e, 0x94, 0x9a, 0x5a, 0x92, 0x5a, 0x24, 0xe4, 0xc4, 0xc5, 0x11, 0x9c, 0x58, 0x09,
-	0xd6, 0x25, 0x24, 0xa5, 0x87, 0x6c, 0xa3, 0x1e, 0xb2, 0x75, 0x52, 0x12, 0x58, 0xe5, 0x0a, 0x72,
-	0x2a, 0x95, 0x18, 0x92, 0xd8, 0xc0, 0xee, 0x35, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf9, 0x5d,
-	0x42, 0x0d, 0xc3, 0x00, 0x00, 0x00,
+	0x90, 0x04, 0x17, 0x7b, 0x6e, 0x6a, 0x71, 0x71, 0x62, 0x3a, 0x4c, 0x11, 0x8c, 0xab, 0xa4, 0xc9,
+	0xc5, 0xed, 0x9a, 0x9c, 0x01, 0x37, 0x4a, 0x8a, 0x8b, 0x23, 0xb5, 0x08, 0xc2, 0x06, 0xab, 0x64,
+	0x0d, 0x82, 0xf3, 0x95, 0x94, 0xb9, 0x38, 0x21, 0x4a, 0x41, 0x26, 0x8a, 0x71, 0xb1, 0xa5, 0x16,
+	0x81, 0x58, 0x50, 0x65, 0x50, 0x9e, 0x51, 0x3f, 0x23, 0x17, 0xbb, 0x7b, 0x51, 0x6a, 0x6a, 0x49,
+	0x6a, 0x91, 0x90, 0x13, 0x17, 0x47, 0x70, 0x62, 0x25, 0xd8, 0x19, 0x42, 0x52, 0x7a, 0xc8, 0x5e,
+	0xd0, 0x43, 0x76, 0xbf, 0x94, 0x04, 0x56, 0xb9, 0x82, 0x9c, 0x4a, 0x25, 0x06, 0x21, 0x07, 0x2e,
+	0x16, 0x90, 0xa5, 0x42, 0x92, 0xa8, 0x6a, 0x90, 0xdc, 0x2c, 0x25, 0x8e, 0x4d, 0x0a, 0xac, 0x5b,
+	0x83, 0xd1, 0x80, 0x31, 0x89, 0x0d, 0x1c, 0x84, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc5,
+	0x60, 0x8e, 0xe9, 0x56, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // GreeterClient is the client API for Greeter service.
 //
@@ -139,13 +226,14 @@ const _ = grpc.SupportPackageIsVersion4
 type GreeterClient interface {
 	// Sends a greeting
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
+	Echo(ctx context.Context, opts ...grpc.CallOption) (Greeter_EchoClient, error)
 }
 
 type greeterClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewGreeterClient(cc *grpc.ClientConn) GreeterClient {
+func NewGreeterClient(cc grpc.ClientConnInterface) GreeterClient {
 	return &greeterClient{cc}
 }
 
@@ -158,10 +246,42 @@ func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...
 	return out, nil
 }
 
+func (c *greeterClient) Echo(ctx context.Context, opts ...grpc.CallOption) (Greeter_EchoClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Greeter_serviceDesc.Streams[0], "/gRPCtemplate.Greeter/Echo", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &greeterEchoClient{stream}
+	return x, nil
+}
+
+type Greeter_EchoClient interface {
+	Send(*EchoRequest) error
+	Recv() (*EchoReply, error)
+	grpc.ClientStream
+}
+
+type greeterEchoClient struct {
+	grpc.ClientStream
+}
+
+func (x *greeterEchoClient) Send(m *EchoRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *greeterEchoClient) Recv() (*EchoReply, error) {
+	m := new(EchoReply)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // GreeterServer is the server API for Greeter service.
 type GreeterServer interface {
 	// Sends a greeting
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
+	Echo(Greeter_EchoServer) error
 }
 
 // UnimplementedGreeterServer can be embedded to have forward compatible implementations.
@@ -170,6 +290,9 @@ type UnimplementedGreeterServer struct {
 
 func (*UnimplementedGreeterServer) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+}
+func (*UnimplementedGreeterServer) Echo(srv Greeter_EchoServer) error {
+	return status.Errorf(codes.Unimplemented, "method Echo not implemented")
 }
 
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
@@ -194,6 +317,32 @@ func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Greeter_Echo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(GreeterServer).Echo(&greeterEchoServer{stream})
+}
+
+type Greeter_EchoServer interface {
+	Send(*EchoReply) error
+	Recv() (*EchoRequest, error)
+	grpc.ServerStream
+}
+
+type greeterEchoServer struct {
+	grpc.ServerStream
+}
+
+func (x *greeterEchoServer) Send(m *EchoReply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *greeterEchoServer) Recv() (*EchoRequest, error) {
+	m := new(EchoRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _Greeter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gRPCtemplate.Greeter",
 	HandlerType: (*GreeterServer)(nil),
@@ -203,6 +352,13 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Greeter_SayHello_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Echo",
+			Handler:       _Greeter_Echo_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "helloProto.proto",
 }
