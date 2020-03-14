@@ -11,6 +11,7 @@ service Greeter {
 service Echo {
 	// Echos a message
 	rpc Echo(stream EchoRequest) returns (stream EchoReply){}
+	rpc Ping(PingRequest) returns (PongReply){}
 }
 
 // The request message containing the user's name.
@@ -30,4 +31,14 @@ message EchoRequest {
 
 message EchoReply {
 	int32 ereply = 1;
+}
+
+message PingRequest {
+	int32 messageId = 1;
+	int32 pingCnt = 2;
+}
+
+message PongReply {
+	int32 messageId = 1;
+	int32 pongCnt = 2;
 }
