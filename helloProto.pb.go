@@ -195,7 +195,7 @@ func init() {
 }
 
 var fileDescriptor_cd6dfd7d8c95606e = []byte{
-	// 215 bytes of a gzipped FileDescriptorProto
+	// 216 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc8, 0x48, 0xcd, 0xc9,
 	0xc9, 0x0f, 0x28, 0xca, 0x2f, 0xc9, 0xd7, 0x2b, 0x00, 0x91, 0x42, 0x3c, 0xe9, 0x41, 0x01, 0xce,
 	0x25, 0xa9, 0xb9, 0x05, 0x39, 0x89, 0x25, 0xa9, 0x4a, 0x4a, 0x5c, 0x3c, 0x1e, 0x20, 0x15, 0x41,
@@ -204,12 +204,12 @@ var fileDescriptor_cd6dfd7d8c95606e = []byte{
 	0x90, 0x04, 0x17, 0x7b, 0x6e, 0x6a, 0x71, 0x71, 0x62, 0x3a, 0x4c, 0x11, 0x8c, 0xab, 0xa4, 0xc9,
 	0xc5, 0xed, 0x9a, 0x9c, 0x01, 0x37, 0x4a, 0x8a, 0x8b, 0x23, 0xb5, 0x08, 0xc2, 0x06, 0xab, 0x64,
 	0x0d, 0x82, 0xf3, 0x95, 0x94, 0xb9, 0x38, 0x21, 0x4a, 0x41, 0x26, 0x8a, 0x71, 0xb1, 0xa5, 0x16,
-	0x81, 0x58, 0x50, 0x65, 0x50, 0x9e, 0x51, 0x3f, 0x23, 0x17, 0xbb, 0x7b, 0x51, 0x6a, 0x6a, 0x49,
-	0x6a, 0x91, 0x90, 0x13, 0x17, 0x47, 0x70, 0x62, 0x25, 0xd8, 0x19, 0x42, 0x52, 0x7a, 0xc8, 0x5e,
-	0xd0, 0x43, 0x76, 0xbf, 0x94, 0x04, 0x56, 0xb9, 0x82, 0x9c, 0x4a, 0x25, 0x06, 0x21, 0x07, 0x2e,
-	0x16, 0x90, 0xa5, 0x42, 0x92, 0xa8, 0x6a, 0x90, 0xdc, 0x2c, 0x25, 0x8e, 0x4d, 0x0a, 0xac, 0x5b,
-	0x83, 0xd1, 0x80, 0x31, 0x89, 0x0d, 0x1c, 0x84, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc5,
-	0x60, 0x8e, 0xe9, 0x56, 0x01, 0x00, 0x00,
+	0x81, 0x58, 0x50, 0x65, 0x50, 0x9e, 0x91, 0x2f, 0x17, 0xbb, 0x7b, 0x51, 0x6a, 0x6a, 0x49, 0x6a,
+	0x91, 0x90, 0x13, 0x17, 0x47, 0x70, 0x62, 0x25, 0xd8, 0x15, 0x42, 0x52, 0x7a, 0xc8, 0x3e, 0xd0,
+	0x43, 0x76, 0xbe, 0x94, 0x04, 0x56, 0xb9, 0x82, 0x9c, 0x4a, 0x25, 0x06, 0x23, 0x0f, 0x2e, 0x16,
+	0x90, 0x9d, 0x42, 0x0e, 0x50, 0x5a, 0x12, 0x55, 0x2d, 0x92, 0xd3, 0xa5, 0xc4, 0xb1, 0x49, 0x81,
+	0x4d, 0xd1, 0x60, 0x34, 0x60, 0x4c, 0x62, 0x03, 0x87, 0xa4, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff,
+	0xce, 0x3b, 0x37, 0x53, 0x5d, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -226,7 +226,6 @@ const _ = grpc.SupportPackageIsVersion6
 type GreeterClient interface {
 	// Sends a greeting
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
-	Echo(ctx context.Context, opts ...grpc.CallOption) (Greeter_EchoClient, error)
 }
 
 type greeterClient struct {
@@ -246,42 +245,10 @@ func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...
 	return out, nil
 }
 
-func (c *greeterClient) Echo(ctx context.Context, opts ...grpc.CallOption) (Greeter_EchoClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Greeter_serviceDesc.Streams[0], "/gRPCtemplate.Greeter/Echo", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &greeterEchoClient{stream}
-	return x, nil
-}
-
-type Greeter_EchoClient interface {
-	Send(*EchoRequest) error
-	Recv() (*EchoReply, error)
-	grpc.ClientStream
-}
-
-type greeterEchoClient struct {
-	grpc.ClientStream
-}
-
-func (x *greeterEchoClient) Send(m *EchoRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *greeterEchoClient) Recv() (*EchoReply, error) {
-	m := new(EchoReply)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // GreeterServer is the server API for Greeter service.
 type GreeterServer interface {
 	// Sends a greeting
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
-	Echo(Greeter_EchoServer) error
 }
 
 // UnimplementedGreeterServer can be embedded to have forward compatible implementations.
@@ -290,9 +257,6 @@ type UnimplementedGreeterServer struct {
 
 func (*UnimplementedGreeterServer) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
-}
-func (*UnimplementedGreeterServer) Echo(srv Greeter_EchoServer) error {
-	return status.Errorf(codes.Unimplemented, "method Echo not implemented")
 }
 
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
@@ -317,32 +281,6 @@ func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Greeter_Echo_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(GreeterServer).Echo(&greeterEchoServer{stream})
-}
-
-type Greeter_EchoServer interface {
-	Send(*EchoReply) error
-	Recv() (*EchoRequest, error)
-	grpc.ServerStream
-}
-
-type greeterEchoServer struct {
-	grpc.ServerStream
-}
-
-func (x *greeterEchoServer) Send(m *EchoReply) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *greeterEchoServer) Recv() (*EchoRequest, error) {
-	m := new(EchoRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 var _Greeter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gRPCtemplate.Greeter",
 	HandlerType: (*GreeterServer)(nil),
@@ -352,10 +290,109 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Greeter_SayHello_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "helloProto.proto",
+}
+
+// EchoClient is the client API for Echo service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type EchoClient interface {
+	// Echos a message
+	Echo(ctx context.Context, opts ...grpc.CallOption) (Echo_EchoClient, error)
+}
+
+type echoClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEchoClient(cc grpc.ClientConnInterface) EchoClient {
+	return &echoClient{cc}
+}
+
+func (c *echoClient) Echo(ctx context.Context, opts ...grpc.CallOption) (Echo_EchoClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Echo_serviceDesc.Streams[0], "/gRPCtemplate.Echo/Echo", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &echoEchoClient{stream}
+	return x, nil
+}
+
+type Echo_EchoClient interface {
+	Send(*EchoRequest) error
+	Recv() (*EchoReply, error)
+	grpc.ClientStream
+}
+
+type echoEchoClient struct {
+	grpc.ClientStream
+}
+
+func (x *echoEchoClient) Send(m *EchoRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *echoEchoClient) Recv() (*EchoReply, error) {
+	m := new(EchoReply)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// EchoServer is the server API for Echo service.
+type EchoServer interface {
+	// Echos a message
+	Echo(Echo_EchoServer) error
+}
+
+// UnimplementedEchoServer can be embedded to have forward compatible implementations.
+type UnimplementedEchoServer struct {
+}
+
+func (*UnimplementedEchoServer) Echo(srv Echo_EchoServer) error {
+	return status.Errorf(codes.Unimplemented, "method Echo not implemented")
+}
+
+func RegisterEchoServer(s *grpc.Server, srv EchoServer) {
+	s.RegisterService(&_Echo_serviceDesc, srv)
+}
+
+func _Echo_Echo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(EchoServer).Echo(&echoEchoServer{stream})
+}
+
+type Echo_EchoServer interface {
+	Send(*EchoReply) error
+	Recv() (*EchoRequest, error)
+	grpc.ServerStream
+}
+
+type echoEchoServer struct {
+	grpc.ServerStream
+}
+
+func (x *echoEchoServer) Send(m *EchoReply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *echoEchoServer) Recv() (*EchoRequest, error) {
+	m := new(EchoRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+var _Echo_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gRPCtemplate.Echo",
+	HandlerType: (*EchoServer)(nil),
+	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Echo",
-			Handler:       _Greeter_Echo_Handler,
+			Handler:       _Echo_Echo_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
