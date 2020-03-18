@@ -8,6 +8,11 @@ service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
+service UThings {
+	// stubbed in 
+	rpc ConnectSwniChannel(stream SmartCastRequest) returns (stream SmartCastResponse){}
+}
+
 service Echo {
 	// Echos a message
 	rpc Echo(stream EchoRequest) returns (stream EchoReply){}
@@ -41,4 +46,67 @@ message PingRequest {
 message PongReply {
 	int32 messageId = 1;
 	int32 pongCnt = 2;
+}
+
+message SmartCastRequest {
+  repeated string NetworkID = 1;
+  SmartCastCommand SCCommand = 2;
+}
+message SmartCastResponse {
+  string NetworkID = 1;
+  int32 MID = 2;
+  SmartCastCommand smartcastCommand = 3;
+}
+
+
+message CreeResponse {
+  int32 status = 1;
+}
+
+enum SmartCastCommand {
+  UNKNOWN = 0;
+  PING = 1;
+  GETALLSWNIS = 2; //Request to send back all the Swnis (1 at a time) on the TCP-SWNI
+  GETSWNI = 3; //a single swni being sent back based on a GetAllSwnis call
+  IDENTIFY = 4;
+  GET_MY_NETWORK = 5;
+  LIST_ALL_NETWORKS = 6;
+  NETWORK_RESET = 7;
+  GET_MODE = 8;
+  ACTUATOR = 9;
+  GET_DEVICE_TABLE = 10;
+  REFRESH_DEVICE_TABLE = 11;
+  SET_DHB_CONFIG = 12;
+  DATA_HEARTBEAT = 13;
+  GET_POWER = 14;
+  REBOOT = 15;
+  SET_CHANNEL = 16;
+  FIRMWARE_UPDATE = 17;
+  SET_PAN_ID = 18;
+  SET_LED_PATTERN = 19;
+  AUTO_ADDRESS = 20;
+  GET_DHB_CONFIG = 21;
+  GET_NODE_COUNT = 22;
+  OP_MODE_EVENT = 23;
+  SET_DEV_CONFIG = 24;
+  GET_DEV_CONFIG = 25;
+  APPLY_SCENE = 26;
+  APPLY_DYNAMIC_PROFILE = 27;
+  GET_LIGHTING_STATUS = 28;
+  SWG_TEST = 29;
+  SET_DYNAMIC_PROFILE_ID = 30;
+  TOGGLE = 31;
+  PAUSE_PROFILES = 32;
+  GET_DYNAMIC_LIGHTING_STATUS = 33;
+
+
+  //offset spacing
+  DATA_HEARTBEAT_0 = 1000;
+  DATA_HEARTBEAT_1 = 1001;
+  DATA_HEARTBEAT_2 = 1002;
+  DATA_HEARTBEAT_3 = 1003;
+  DATA_HEARTBEAT_4 = 1004;
+  DATA_HEARTBEAT_5 = 1005;
+  DATA_HEARTBEAT_6 = 1006;
+  DATA_HEARTBEAT_7 = 1007;
 }
