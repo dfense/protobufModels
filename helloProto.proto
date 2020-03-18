@@ -8,7 +8,7 @@ service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
-service UThings {
+service Uthings {
 	// stubbed in 
 	rpc ConnectSwniChannel(stream SmartCastRequest) returns (stream SmartCastResponse){}
 }

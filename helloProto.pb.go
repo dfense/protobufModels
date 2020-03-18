@@ -632,13 +632,13 @@ var fileDescriptor_cd6dfd7d8c95606e = []byte{
 	0xc7, 0x26, 0xf8, 0x73, 0xfc, 0x73, 0x13, 0xfc, 0x05, 0xfe, 0xb5, 0x09, 0xfe, 0x12, 0xff, 0x2e,
 	0x35, 0xbb, 0x50, 0xb2, 0x67, 0x61, 0x98, 0x84, 0x33, 0xd2, 0x82, 0xb2, 0x1c, 0xbc, 0x4b, 0x17,
 	0x31, 0x69, 0xac, 0xff, 0x7a, 0x57, 0x37, 0x78, 0xa3, 0xbe, 0x31, 0xa7, 0xf7, 0xe9, 0x56, 0xf3,
-	0x3b, 0x28, 0xf5, 0xd4, 0xed, 0x5d, 0x34, 0x8c, 0xc9, 0x37, 0x40, 0xcc, 0x49, 0x14, 0x85, 0x37,
-	0x89, 0x7c, 0x1b, 0xdd, 0x99, 0xb7, 0x83, 0x28, 0x0a, 0x47, 0xe4, 0x7d, 0x6b, 0x21, 0x17, 0x3f,
-	0x7b, 0x6f, 0x7e, 0xbe, 0x15, 0x8c, 0xad, 0x8b, 0xc2, 0xf3, 0x42, 0xf3, 0xc7, 0x02, 0xec, 0xe8,
-	0xfd, 0x4e, 0xbe, 0xca, 0xfe, 0x9f, 0xae, 0xd7, 0xad, 0x3c, 0x13, 0x8d, 0x93, 0x4d, 0xa9, 0xd4,
-	0xae, 0x96, 0x22, 0x2f, 0x61, 0x47, 0x3f, 0x02, 0xf7, 0x15, 0x56, 0x1e, 0x86, 0xfb, 0x0a, 0x8b,
-	0x65, 0x6f, 0x6c, 0x7d, 0x5b, 0x4c, 0xdf, 0xbc, 0x17, 0xff, 0x04, 0x00, 0x00, 0xff, 0xff, 0x67,
-	0x1c, 0x6e, 0x86, 0x07, 0x07, 0x00, 0x00,
+	0x3b, 0x28, 0xf5, 0x92, 0xdb, 0xbb, 0x68, 0x18, 0x93, 0x6f, 0x80, 0x98, 0x93, 0x28, 0x0a, 0x6f,
+	0x12, 0xf9, 0x36, 0xba, 0x33, 0x6f, 0x07, 0x51, 0x14, 0x8e, 0xc8, 0xfb, 0xd6, 0x42, 0x2e, 0x7e,
+	0xf6, 0xde, 0xfc, 0x7c, 0x2b, 0x18, 0x5b, 0x17, 0x85, 0xe7, 0x85, 0xe6, 0x8f, 0x05, 0xd8, 0xd1,
+	0xfb, 0x9d, 0x7c, 0x95, 0xfd, 0x3f, 0x5d, 0xaf, 0x5b, 0x79, 0x26, 0x1a, 0x27, 0x9b, 0x52, 0xa9,
+	0x5d, 0x2d, 0x45, 0x5e, 0xc2, 0x8e, 0x7e, 0x04, 0xee, 0x2b, 0xac, 0x3c, 0x0c, 0xf7, 0x15, 0x16,
+	0xcb, 0xde, 0xd8, 0xfa, 0xb6, 0x98, 0xbe, 0x79, 0x2f, 0xfe, 0x09, 0x00, 0x00, 0xff, 0xff, 0x61,
+	0x8e, 0x40, 0xa7, 0x07, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -723,46 +723,46 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 	Metadata: "helloProto.proto",
 }
 
-// UThingsClient is the client API for UThings service.
+// UthingsClient is the client API for Uthings service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type UThingsClient interface {
+type UthingsClient interface {
 	// stubbed in
-	ConnectSwniChannel(ctx context.Context, opts ...grpc.CallOption) (UThings_ConnectSwniChannelClient, error)
+	ConnectSwniChannel(ctx context.Context, opts ...grpc.CallOption) (Uthings_ConnectSwniChannelClient, error)
 }
 
-type uThingsClient struct {
+type uthingsClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUThingsClient(cc grpc.ClientConnInterface) UThingsClient {
-	return &uThingsClient{cc}
+func NewUthingsClient(cc grpc.ClientConnInterface) UthingsClient {
+	return &uthingsClient{cc}
 }
 
-func (c *uThingsClient) ConnectSwniChannel(ctx context.Context, opts ...grpc.CallOption) (UThings_ConnectSwniChannelClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_UThings_serviceDesc.Streams[0], "/gRPCtemplate.UThings/ConnectSwniChannel", opts...)
+func (c *uthingsClient) ConnectSwniChannel(ctx context.Context, opts ...grpc.CallOption) (Uthings_ConnectSwniChannelClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Uthings_serviceDesc.Streams[0], "/gRPCtemplate.Uthings/ConnectSwniChannel", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &uThingsConnectSwniChannelClient{stream}
+	x := &uthingsConnectSwniChannelClient{stream}
 	return x, nil
 }
 
-type UThings_ConnectSwniChannelClient interface {
+type Uthings_ConnectSwniChannelClient interface {
 	Send(*SmartCastRequest) error
 	Recv() (*SmartCastResponse, error)
 	grpc.ClientStream
 }
 
-type uThingsConnectSwniChannelClient struct {
+type uthingsConnectSwniChannelClient struct {
 	grpc.ClientStream
 }
 
-func (x *uThingsConnectSwniChannelClient) Send(m *SmartCastRequest) error {
+func (x *uthingsConnectSwniChannelClient) Send(m *SmartCastRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *uThingsConnectSwniChannelClient) Recv() (*SmartCastResponse, error) {
+func (x *uthingsConnectSwniChannelClient) Recv() (*SmartCastResponse, error) {
 	m := new(SmartCastResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -770,43 +770,43 @@ func (x *uThingsConnectSwniChannelClient) Recv() (*SmartCastResponse, error) {
 	return m, nil
 }
 
-// UThingsServer is the server API for UThings service.
-type UThingsServer interface {
+// UthingsServer is the server API for Uthings service.
+type UthingsServer interface {
 	// stubbed in
-	ConnectSwniChannel(UThings_ConnectSwniChannelServer) error
+	ConnectSwniChannel(Uthings_ConnectSwniChannelServer) error
 }
 
-// UnimplementedUThingsServer can be embedded to have forward compatible implementations.
-type UnimplementedUThingsServer struct {
+// UnimplementedUthingsServer can be embedded to have forward compatible implementations.
+type UnimplementedUthingsServer struct {
 }
 
-func (*UnimplementedUThingsServer) ConnectSwniChannel(srv UThings_ConnectSwniChannelServer) error {
+func (*UnimplementedUthingsServer) ConnectSwniChannel(srv Uthings_ConnectSwniChannelServer) error {
 	return status.Errorf(codes.Unimplemented, "method ConnectSwniChannel not implemented")
 }
 
-func RegisterUThingsServer(s *grpc.Server, srv UThingsServer) {
-	s.RegisterService(&_UThings_serviceDesc, srv)
+func RegisterUthingsServer(s *grpc.Server, srv UthingsServer) {
+	s.RegisterService(&_Uthings_serviceDesc, srv)
 }
 
-func _UThings_ConnectSwniChannel_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(UThingsServer).ConnectSwniChannel(&uThingsConnectSwniChannelServer{stream})
+func _Uthings_ConnectSwniChannel_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(UthingsServer).ConnectSwniChannel(&uthingsConnectSwniChannelServer{stream})
 }
 
-type UThings_ConnectSwniChannelServer interface {
+type Uthings_ConnectSwniChannelServer interface {
 	Send(*SmartCastResponse) error
 	Recv() (*SmartCastRequest, error)
 	grpc.ServerStream
 }
 
-type uThingsConnectSwniChannelServer struct {
+type uthingsConnectSwniChannelServer struct {
 	grpc.ServerStream
 }
 
-func (x *uThingsConnectSwniChannelServer) Send(m *SmartCastResponse) error {
+func (x *uthingsConnectSwniChannelServer) Send(m *SmartCastResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *uThingsConnectSwniChannelServer) Recv() (*SmartCastRequest, error) {
+func (x *uthingsConnectSwniChannelServer) Recv() (*SmartCastRequest, error) {
 	m := new(SmartCastRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -814,14 +814,14 @@ func (x *uThingsConnectSwniChannelServer) Recv() (*SmartCastRequest, error) {
 	return m, nil
 }
 
-var _UThings_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "gRPCtemplate.UThings",
-	HandlerType: (*UThingsServer)(nil),
+var _Uthings_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gRPCtemplate.Uthings",
+	HandlerType: (*UthingsServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "ConnectSwniChannel",
-			Handler:       _UThings_ConnectSwniChannel_Handler,
+			Handler:       _Uthings_ConnectSwniChannel_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
